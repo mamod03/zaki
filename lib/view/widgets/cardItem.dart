@@ -6,7 +6,6 @@ import '../../core/constant/color.dart';
 import '../../core/constant/imageAssets.dart';
 import '../../core/shared/CairoText.dart';
 
-
 class CardItem extends StatelessWidget {
   const CardItem({super.key});
 
@@ -17,6 +16,7 @@ class CardItem extends StatelessWidget {
       child: Stack(
         children: [
           Container(
+            margin: EdgeInsets.all(5.w),
             height: 147.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.r),
@@ -62,8 +62,8 @@ class CardItem extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: -23.83.w,
-            top: 23.25.h,
+            left: 23.83.w,
+            top: -23.25.h,
             child: Container(
               padding: EdgeInsets.symmetric(
                 horizontal: 22.16.w,
@@ -83,6 +83,4 @@ class CardItem extends StatelessWidget {
       ),
     );
   }
-  }
-
-
+}

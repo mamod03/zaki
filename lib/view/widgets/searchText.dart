@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
-import 'package:get/state_manager.dart';
 import 'package:zaki/controller/addproductController.dart';
 import 'package:zaki/core/constant/color.dart';
 import 'package:zaki/core/shared/CairoText.dart';
 
-class Testview extends GetView<AddProductController> {
-  const Testview({super.key});
+class SearchText extends GetView<AddProductController> {
+  AddProductController controller;
+  SearchText({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    Get.put(AddProductController());
     controller.textEditingController.text =
         AddProductController.items[0]['description'].toString();
     controller.update();
@@ -26,33 +25,19 @@ class Testview extends GetView<AddProductController> {
                 // autofocus: true,
                 focusNode: focusNode,
                 decoration: InputDecoration(
-                  // border:Inputbor 
-                  // enabled: false,
-                  // enabledBorder: UnderlineInputBorder(),
-                  // border: UnderlineInputBorder(),
+                  enabled: controller.isinput,
+                  border: OutlineInputBorder(),
+                  label: CairoText(
+                    text: controller.textEditingController.text,
+                    size: 12,
+                    color: AppColor.black,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               );
             },
             itemBuilder: (context, suggestion) {
-              return ListTile(
-                title: CairoText(
-                  text: suggestion,
-                  size: 12,
-                  color: AppColor.black,
-                  fontWeight: FontWeight.w400,
-                ),
-                leading: CairoText(
-                  text: '150',
-                  size: 12,
-                  color: AppColor.black,
-                  fontWeight: FontWeight.w400,
-                ),
-                trailing: CairoText(
-                  text: '450.000 د.ع',
-                  size: 10,
-                  color: AppColor.black,
-                ),
-              );
+              return ListTile(title: Text(suggestion));
             },
             onSelected: (suggestion) {
               controller.textEditingController.text = suggestion;
